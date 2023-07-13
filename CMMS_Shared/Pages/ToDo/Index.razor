@@ -1,20 +1,19 @@
 ﻿@page "/todo"
-@using CMMS_Shared.Services;
-@using CMMS_Shared.Data.Models;
-@using Microsoft.AspNetCore.Components.Forms;
+
 
 <PageTitle>Assignments</PageTitle>
 
-<EditForm Model="@todo" OnValidSubmit="HandleSubmit">
-    <label for="AssignmentInput">Assignment</label>
-    <InputText id="AssignmentInput" @bind-Value="@todo.Assignment"></InputText>
-    <label for="PicInput">PIC</label>
-    <InputText id="PicInput" @bind-Value="@todo.Pic"></InputText>
-    <label for="OrderingUserInput">Ordering User</label>
-    <InputText id="OrderingUserInput" @bind-Value="@todo.OrderingUser"></InputText>
-    <button type="submit" class="btn-primary">Create</button>
-</EditForm>
 
+
+
+<div class="row">
+    <div class="col-lg-9">
+        <h1>To Do</h1>
+    </div>
+    <div class="col-lg-3 text-right">
+        <a class="btn btn-success btn-sm" href="/todo/create" role="button">Create New</a>
+    </div>
+</div>
 
 @if(Todos != null && Todos.Count > 0)
 {
@@ -37,11 +36,16 @@
                     <td>@item.Assignment</td>
                     <td>@item.Pic</td>
                     <td>@item.OrderingUser</td>
-                    <td>@item.UntilDate</td>
+                    <td>
+                        @if (item.UntilDate != null)
+                        {
+                            @item.UntilDate.Value.ToShortDateString()
+                        }
+                    </td>
                     <td>@item.Status</td>
                     <td>@item.Eqp</td>
                     <td class="text-right">
-                        <a class="btn btn-primary btn-sm" href="/todo/detail/@item.Id" role="button">Details</a>
+                        <a class="btn btn-primary btn-sm" href="/todo/details/@item.Id" role="button">Details</a>
                         <a class="btn btn-secondary btn-sm" href="/todo/edit/@item.Id" role="button">Edit</a>
                         <button class="btn btn-danger btn-sm" @onclick="@(e => DeleteTodo(item.Id))" role="button">Delete</button>
                     </td>
@@ -53,39 +57,3 @@
 
 
 
-@code {
-    
-
-    [Inject]
-    protected ITodoService TodoService { get; set; }
-
-    private List<Todo> Todos { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        Todos = await TodoService.GetTodos();
-    }
-
-    public async Task DeleteTodo(int todoId)
-    {
-        var todo = await TodoService.GetTodoById(todoId);
-
-        if(todo != null)
-        {
-            await TodoService.DeleteTodo(todoId);
-
-            Todos.RemoveAll(x => x.Id == todoId);
-        }
-    }
-
-
-    Todo todo = new Todo();
-
-    public void HandleSubmit(EditContext editContext)
-    {
-        var newTodo = (Todo)editContext.Model;
-        newTodo.CreateDate = DateTime.Now;
-        TodoService.CreateTodo(newTodo);
-    }
-
-}

@@ -1,0 +1,47 @@
+﻿@page "/todo/create"
+@using Microsoft.AspNetCore.Components.Forms
+
+
+<div class="row">
+    <div class="col-lg-9">
+        <h1>Create</h1>
+    </div>
+    <div class="col-lg-3 text-right">
+        <a class="btn btn-secondary btn-sm" href="/todo" role="button">Go Back To List</a>
+    </div>
+</div>
+ 
+@if (todo != null)
+{
+    <EditForm Model="@todo" OnValidSubmit="SubmitTodo">
+        <div class="form-group">
+            <label>Assignment</label>
+            <InputText class="form-control" @bind-Value="todo.Assignment" />
+        </div>
+        <div class="form-group">
+            <label>Person in charge</label>
+            <InputText class="form-control" @bind-Value="todo.Pic" />
+        </div>
+        <div class="form-group">
+            <label>Ordered By</label>
+            <InputText class="form-control" @bind-Value="todo.OrderingUser" />
+        </div>
+        <div class="form-group">
+            <label>Deadline</label>
+            <InputDate class="form-control" @bind-Value="todo.UntilDate" />
+        </div>
+        <div class="form-group">
+            <label>Status</label>
+            <InputText class="form-control" @bind-Value="todo.Status" />
+        </div>
+        <div class="form-group">
+            <label>Equipment Code</label>
+            <InputSelect class="form-control" @bind-Value="todo.Eqp" />
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </EditForm>
+}
+
+
+
+

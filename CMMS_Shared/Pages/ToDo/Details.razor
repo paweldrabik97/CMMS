@@ -1,0 +1,59 @@
+﻿@page "/todo/details/{id:int}"
+
+
+
+@if (Todo != null)
+{
+    <div class="row">
+        <div class="col-lg-9">
+            <h1>@Todo.Assignment</h1>
+        </div>
+        <div class="col-lg-3 text-right">
+            <a class="btn btn-secondary btn-sm" href="/todo" role="button">Go Back To List</a>
+        </div>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">PIC</th>
+                <td>@Todo.Pic</td>
+            </tr>
+            <tr>
+                <th scope="row">Ordered By</th>
+                <td>@Todo.OrderingUser</td>
+            </tr>
+            <tr>
+                <th scope="row">Created</th>
+                <td>
+                    @if (Todo.CreateDate != null)
+                    {
+                        @Todo.CreateDate.ToShortDateString()
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Deadline</th>
+                <td>
+                    @if (Todo.UntilDate != null)
+                    {
+                        @Todo.UntilDate.Value.ToShortDateString()
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Finished</th>
+                <td>@Todo.FinishDate</td>
+            </tr>
+            <tr>
+                <th scope="row">Status</th>
+                <td>@Todo.Status</td>
+            </tr>
+            <tr>
+                <th scope="row">Equipment Code</th>
+                <td>@Todo.Eqp</td>
+            </tr>
+        </tbody>
+    </table>
+}
+
