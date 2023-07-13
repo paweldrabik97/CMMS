@@ -1,13 +1,29 @@
 using CMMS_BlazorServer.Data;
+using CMMS_Shared.Data;
+using CMMS_Shared.Data.Models;
+using CMMS_Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.Extensions.DependencyInjection;
+using System.Data.Entity.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("Default")
+    ?? throw new NullReferenceException("No connection string in config!");
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddTransient<ITodoService, TodoService>();
+
+builder.Services.AddDbContextFactory<SystemDbContext>((DbContextOptionsBuilder options) =>
+options.UseSqlServer(connectionString));
+
+
+
 
 var app = builder.Build();
 
