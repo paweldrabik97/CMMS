@@ -1,0 +1,34 @@
+﻿@page "/eqp/details/{id:int}"
+
+@if (Equipment != null)
+{
+    <div class="row">
+        <div class="col-lg-9">
+            <h1>@Equipment.Name</h1>
+        </div>
+        <div class="col-lg-3 text-right">
+            <a class="btn btn-secondary btn-sm" href="/eqp" role="button">Go Back To List</a>
+        </div>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th scope="row">Equipment Code</th>
+                <td>@Equipment.EquipmentCode</td>
+            </tr>
+            <tr>
+                <th scope="row">Serial No.</th>
+                <td>@Equipment.SerialNo</td>
+            </tr>
+            <tr>
+                <th scope="row">Where Used</th>
+                <td>@Equipment.WhereUsed</td>
+            </tr>
+            <tr>
+                <th scope="row">Product Model</th>
+                <td>@Equipment.ProductModel</td>
+            </tr>
+        </tbody>
+    </table>
+}

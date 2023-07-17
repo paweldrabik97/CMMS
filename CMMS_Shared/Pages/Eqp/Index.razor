@@ -1,0 +1,46 @@
+﻿@page "/eqp"
+
+<PageTitle>Equipment</PageTitle>
+
+<div class="row">
+    <div class="col-lg-9">
+        <h1>Equipment List</h1>
+    </div>
+    <div class="col-lg-3 text-right">
+        <a class="btn btn-success btn-sm" href="/eqp/create" role="button">Create New</a>
+    </div>
+</div>
+
+@if (Equipments != null && Equipments.Count > 0)
+{
+    <table class="table table-bordered table-striped table-sm">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Equipment Code</th>
+                <th>Serial No.</th>
+                <th>Where Used</th>
+                <th>Product Model</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Equipments)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.EquipmentCode</td>
+                    <td>@item.SerialNo</td>
+                    <td>@item.WhereUsed</td>
+                    <td>@item.ProductModel</td>
+                    <td class="text-right">
+                        <a class="btn btn-primary btn-sm" href="/eqp/details/@item.Id" role="button">Details</a>
+                        <a class="btn btn-secondary btn-sm" href="/eqp/edit/@item.Id" role="button">Edit</a>
+                        <button class="btn btn-danger btn-sm" @onclick="@(e => DeleteEquipment(item.Id))" role="button">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

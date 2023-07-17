@@ -13,6 +13,7 @@ namespace CMMS_Shared.Data
 
         public DbSet<Todo> Todos { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<ItemCycles> ItemCycles { get; set; }
 
     }
 }

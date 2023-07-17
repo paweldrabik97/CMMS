@@ -32,13 +32,6 @@ namespace CMMS_Shared.Pages.ToDo
         }
 
 
-        Todo todo = new Todo();
-
-        public void HandleSubmit(EditContext editContext)
-        {
-            var newTodo = (Todo)editContext.Model;
-            newTodo.CreateDate = DateTime.Now;
-            TodoService.CreateTodo(newTodo);
-        }
+        
     }
 }

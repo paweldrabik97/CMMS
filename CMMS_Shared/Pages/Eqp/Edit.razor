@@ -1,0 +1,40 @@
+﻿@page "/eqp/edit/{id:int}"
+@using Microsoft.AspNetCore.Components.Forms
+
+
+<div class="row">
+    <div class="col-lg-9">
+        <h1>Edit</h1>
+    </div>
+    <div class="col-lg-3 text-right">
+        <a class="btn btn-secondary btn-sm" href="/eqp" role="button">Go Back To List</a>
+    </div>
+</div>
+
+@if (equipment != null)
+{
+    <EditForm Model="@equipment" OnValidSubmit="SubmitEquipment">
+        <div class="form-group">
+            <label>Name</label>
+            <InputText class="form-control" @bind-Value="equipment.Name" />
+        </div>
+        <div class="form-group">
+            <label>Equipment Code</label>
+            <InputText class="form-control" @bind-Value="equipment.EquipmentCode" />
+        </div>
+        <div class="form-group">
+            <label>Serial No.</label>
+            <InputText class="form-control" @bind-Value="equipment.SerialNo" />
+        </div>
+        <div class="form-group">
+            <label>Where Used</label>
+            <InputSelect class="form-control" @bind-Value="equipment.WhereUsed" />
+        </div>
+        <div class="form-group">
+            <label>Product Model</label>
+            <InputText class="form-control" @bind-Value="equipment.ProductModel" />
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        
+    </EditForm>
+}

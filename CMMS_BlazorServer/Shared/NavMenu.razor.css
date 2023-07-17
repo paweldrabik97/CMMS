@@ -16,11 +16,14 @@
     font-size: 1.1rem;
     vertical-align: text-top;
     top: -2px;
+    box-decoration-break: clone;
+    
 }
 
 .nav-item {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+    
 }
 
     .nav-item:first-of-type {
@@ -37,7 +40,7 @@
         height: 3rem;
         display: flex;
         align-items: center;
-        line-height: 3rem;
+        line-height: 1.5rem;
     }
 
 .nav-item ::deep a.active {

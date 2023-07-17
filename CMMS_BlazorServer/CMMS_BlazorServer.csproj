@@ -20,4 +20,8 @@
     <ProjectReference Include="..\CMMS_Shared\CMMS_Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>

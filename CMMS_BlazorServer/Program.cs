@@ -1,4 +1,4 @@
-using CMMS_BlazorServer.Data;
+
 using CMMS_Shared.Data;
 using CMMS_Shared.Data.Models;
 using CMMS_Shared.Services;
@@ -16,8 +16,9 @@ var connectionString = builder.Configuration.GetConnectionString("Default")
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+
 builder.Services.AddTransient<ITodoService, TodoService>();
+builder.Services.AddTransient<IEquipmentService, EquipmentService>();
 
 builder.Services.AddDbContextFactory<SystemDbContext>((DbContextOptionsBuilder options) =>
 options.UseSqlServer(connectionString));
