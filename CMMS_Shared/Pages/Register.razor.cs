@@ -45,7 +45,13 @@ namespace CMMS_Shared.Pages
             };
 
             var result = await RegisterService.CreateAsync(user, Registration.Password);
-            if (result.Succeeded)
+
+            var role = new IdentityRole(Registration.Role);
+            var addRoleResult = await RegisterService.CreateRoleAsync(role);
+
+            var addUserRoleResult = await RegisterService.AddToRoleAsync(user, Registration.Role);
+
+            if (result.Succeeded && addRoleResult.Succeeded && addUserRoleResult.Succeeded )
             {
                 //await RegisterService.SignInAsync(user, false);
                 NavigationManager.NavigateTo("");

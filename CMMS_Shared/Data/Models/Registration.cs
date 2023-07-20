@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Drawing.Printing;
 
 namespace CMMS_Shared.Data.Models
 {
@@ -17,5 +18,8 @@ namespace CMMS_Shared.Data.Models
         [DataType(DataType.Password)]
         [Compare(nameof(Password), ErrorMessage = "Password and Confirm Password fields do not match")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string Role { get; set; }
     }
 }

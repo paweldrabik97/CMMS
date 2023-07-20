@@ -1,5 +1,5 @@
 ﻿@page "/register"
-
+@attribute [Authorize(Roles = "Administrator")]
 
 @if(Registration != null)
 {
@@ -22,7 +22,16 @@
                         <label for="confirm-password">Confirm Password</label>
                         <InputText class="form-control" type="password" placeholder="Enter password" @bind-Value="Registration.ConfirmPassword" id="confirm-password" />
                     </div>
-                    
+                    <div class="mb-3">
+                        <label for="role">Role
+                            <InputSelect class="form-control" @bind-Value="Registration.Role" id="role">
+                                <option value="">Select role ...</option>
+                                <option value="Administrator">Administrator</option>
+                                <option value="Leader">Leader</option>
+                                <option value="Technician">Technician</option>
+                            </InputSelect>
+                        </label>
+                    </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Register</button>
                     </div>
