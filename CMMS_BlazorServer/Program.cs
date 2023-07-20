@@ -4,6 +4,7 @@ using CMMS_Shared.Data.Models;
 using CMMS_Shared.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,9 +20,12 @@ builder.Services.AddServerSideBlazor();
 
 builder.Services.AddTransient<ITodoService, TodoService>();
 builder.Services.AddTransient<IEquipmentService, EquipmentService>();
+builder.Services.AddTransient<RegisterService>();
 
 builder.Services.AddDbContextFactory<SystemDbContext>((DbContextOptionsBuilder options) =>
 options.UseSqlServer(connectionString));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<SystemDbContext>();
 
 
 
@@ -41,6 +45,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseMiddleware<BlazorCookieLoginMiddleware>();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

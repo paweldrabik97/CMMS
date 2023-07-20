@@ -1,9 +1,12 @@
 ﻿using CMMS_Shared.Data.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace CMMS_Shared.Data
 {
-    public class SystemDbContext : DbContext
+    public class SystemDbContext : IdentityDbContext
     {
         public SystemDbContext(DbContextOptions<SystemDbContext> options)
             : base(options)

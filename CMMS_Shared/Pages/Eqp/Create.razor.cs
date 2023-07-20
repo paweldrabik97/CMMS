@@ -17,7 +17,7 @@ namespace CMMS_Shared.Pages.Eqp
 
         protected override async Task OnInitializedAsync()
         {
-            Equipment = new Equipment();
+           Equipment = new Equipment();
         }
 
         private async void SubmitEquipment()
